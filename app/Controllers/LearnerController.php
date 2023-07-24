@@ -3,6 +3,8 @@
 namespace App\Controllers;
 
 use App\Models\Learner;
+use App\Models\Prom;
+use App\Models\Skill;
 
 class LearnerController extends CoreController
 {
@@ -31,10 +33,13 @@ class LearnerController extends CoreController
     public function showForm()
     {
         // TODO ajouter variables pour la dynamisation de compétences et promotions
-        $this->show('learner/form');
-        // $this->show('learner/add', [
-        //     'learnerList' => $learnerList,
-        // ]);
+        $promList = Prom::findAll();
+        $skillList = Skill::findAll();
+        // $this->show('learner/form');
+        $this->show('learner/form', [
+            'promList' => $promList,
+            'skillList' => $skillList,
+        ]);
     }
 
 

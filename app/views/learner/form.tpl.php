@@ -12,23 +12,23 @@
         <div class="d-flex">
           <select required id="prom" name="prom" aria-label="Default select example">
               <option selected value="" >Choisissez la promotion</option>
-              <!-- Ajouter différentes promotions -->
-              <option value="1">CDA-20230701</option>
-              <option value="2">DWWM-20230701</option>
-              <option value="3">NULL-20230701</option>
+              <?php foreach ($promList as $currentProm) :?>
+                <option value="<?= $currentProm->getId(); ?>"><?= $currentProm->getLabel(); ?></option>
+              <?php endforeach; ?>
           </select>
           <select required id="gender" name="gender" aria-label="Default select example">
               <option selected value="" >Choisissez le genre</option>
               <option value="m">Homme</option>
               <option value="f">Femme</option>
           </select>
-          <label for="cars">Compétences de l'apprenant:</label>
-          <select name="cars" id="cars" multiple>
-            <!-- Boucle sur les différentes compétences -->
-            <option value="1">Bootstrap</option>
-            <option value="2">CSS</option>
-            <option value="3">React Js</option>
-            <option value="4">Python</option>
+          <label for="skills">Compétences de l'apprenant:</label>
+          <select required name="skills" id="skills" multiple>
+            <?php foreach ($skillList as $currentSkill) :?>
+                <option 
+                    value="<?= $currentSkill->getId(); ?>" 
+                    skillGroup="<?= $currentSkill->getSkill_group_id(); ?>"
+                ><?= $currentSkill->getLabel(); ?></option>
+            <?php endforeach; ?>
           </select>
         </div>
         <button type="submit" class="btn btn-secondary add-car">Soumettre</button>
