@@ -24,6 +24,21 @@ class LearnerController extends CoreController
     }
 
     /**
+     * Function to get all learners
+     *
+     * @return void
+     */
+    public function showForm()
+    {
+        // TODO ajouter variables pour la dynamisation de compétences et promotions
+        $this->show('learner/form');
+        // $this->show('learner/add', [
+        //     'learnerList' => $learnerList,
+        // ]);
+    }
+
+
+    /**
      * Function called by form to add a learner
      */
     public function createAction()

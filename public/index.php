@@ -36,6 +36,35 @@ $router->map(
     'main-home'
 );
 
+$router->map(
+    'GET',
+    '/learner/list',
+    [
+        'method' => 'listAction',
+        'controller' => 'LearnerController'
+    ],
+    'learner-list'
+);
+
+$router->map(
+    'GET',
+    '/learner/add',
+    [
+        'method' => 'showForm',
+        'controller' => 'LearnerController'
+    ],
+    'learner-showForm'
+);
+
+$router->map(
+    'POST',
+    '/learner/add',
+    [
+        'method' => 'createAction',
+        'controller' => 'LearnerController'
+    ],
+    'learner-create'
+);
 
 /* -------------
 --- DISPATCH ---

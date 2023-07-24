@@ -63,7 +63,11 @@ class Learner extends CoreModel
     public static function findAll()
     {
         $pdo = Database::getPDO();
-        $sql = 'SELECT * FROM `learner`';
+        // $sql = 'SELECT * FROM `learner`';
+        $sql = 
+        'SELECT `learner`.`id`, `learner`.`lastname`, `learner`.`firstname`, `learner`.`age`, `learner`.`gender`, `prom`.`label` FROM `learner`
+        JOIN `prom`
+        ON `prom_id` = `prom`.`id`';
         $pdoStatement = $pdo->query($sql);
         $results = $pdoStatement->fetchAll(PDO::FETCH_CLASS, self::class);
         

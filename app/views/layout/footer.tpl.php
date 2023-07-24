@@ -1,10 +1,6 @@
 <footer>
 
-Coucou footer
-
-
-
-
+Ici le footer
 
 </footer>
 </body>
