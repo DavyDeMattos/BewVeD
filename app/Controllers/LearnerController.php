@@ -53,6 +53,9 @@ class LearnerController extends CoreController
     {
         // dump($_POST);
         // exit;
+        $prom = Prom::find($prom_id);
+
+
         $nbByGroup = intval(floor(filter_input(INPUT_POST, 'nbByGroup')));
         $gender = filter_input(INPUT_POST, 'gender');
         // strtoupper = put letter to uppercase
@@ -87,7 +90,7 @@ class LearnerController extends CoreController
         if ($isMixite) {
             
                 $total = count($students);
-                $studentByGroup = $length;
+                $studentByGroup = $length; //3
                 $nbGroup = floor($total / $studentByGroup);
                 $maleStudents = [];
                 $femaleStudents = [];
@@ -111,7 +114,7 @@ class LearnerController extends CoreController
                 // -------------------------------------------------
                 $groups = [];
                 $extraStudents = [];
-                dump($nbGroup);
+                // dump($nbGroup);
                 // Assigner une personne du genre par groupe
                 // Pas assez de fille pour chaque groupe
                 if ($nbGroup>count($femaleStudents)){
@@ -195,19 +198,14 @@ class LearnerController extends CoreController
         }
         $learnerList = $groups;
 
-        return $this->show('learner/grouping', [
-            'prom' => $prom_id,
+        return $this->show('learner/grouping-filtered', [
+            'prom' => $prom,
             'count' => count($learners),
             // 'group' => $group,
-            'learnerList' => $learnerList,
+            'learnerList' => $learnerList, // students filtered
         ]);
         //dump($learnerList);
 
-        // En argument, on fournit le fichier de Vue
-        // Par convention, chaque fichier de vue sera dans un sous-dossier du nom du Controller
-        // $this->show('learner/list', [
-        //     'learnerList' => $learnerList,
-        // ]);
     } 
 
     /**

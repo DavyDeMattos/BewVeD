@@ -1,5 +1,5 @@
 <main>
-  <h2>Mes Groupes</h2>
+  <h2>Mes Groupes Filtré</h2>
   <h2><?= $prom->GetLabel(); ?></h2>
   <span><?= count($learnerList) ?> Apprenants</span>
 
@@ -24,7 +24,7 @@
   <?php foreach ($learnerList as $learner) :?>
   <!-- Boucle FOR en fonction du nombre de groupes -->
   <div class="content">
-    Group n° <? $groupNumber ?>
+    Group n° <?= $groupNumber ?>
     <?php $groupNumber += 1 ;?>
     <table>
       <tr>
@@ -36,18 +36,18 @@
         <th colspan="1">Age</th>
         <th colspan="2">skillsGroup</th>
       </tr>
-      <?php //foreach ($learner as $group) :?>
+      <?php foreach ($learner as $group) :?>
 
       <tr>
-        <td colspan="1"><?= $learner->getId() ?></td>
+        <td colspan="1"><?= $group->getId() ?></td>
         <!-- {% set numberInGroup = numberInGroup + 1 %} -->
         <td colspan="1"><?= $prom->getLabel() ?></td>
         <th colspan="1">
-          <a href="#"><?= $learner->getFirstname() ?></a>
+          <a href="#"><?= $group->getFirstname() ?></a>
         </th>
-        <th colspan="1"><?= $learner->getLastname() ?></th>
-        <td colspan="1"><?= $learner->getGender() ?></td>
-        <td colspan="1"><?= $learner->getAge() ?></td>
+        <th colspan="1"><?= $group->getLastname() ?></th>
+        <td colspan="1"><?= $group->getGender() ?></td>
+        <td colspan="1"><?= $group->getAge() ?></td>
         <td colspan="2">
           <!-- Boucle FOR pour lister les compétences de chaque apprenant -->
           <!-- Optionnel -->
@@ -55,7 +55,7 @@
           <hr />
         </td>
       </tr>
-      <?php //endforeach; ?>
+      <?php endforeach; ?>
     </table>
   </div>
     <?php endforeach; ?>
