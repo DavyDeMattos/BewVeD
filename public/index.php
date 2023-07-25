@@ -66,6 +66,65 @@ $router->map(
     'learner-create'
 );
 
+$router->map(
+    'GET',
+    '/prom/list',
+    [
+        'method' => 'listAction',
+        'controller' => 'PromController'
+    ],
+    'prom-list'
+);
+
+$router->map(
+    'GET',
+    '/prom/list/[:prom_id]',
+    [
+        'method' => 'groupList',
+        'controller' => 'LearnerController'
+    ],
+    'prom-grouping'
+);
+
+$router->map(
+    'POST',
+    '/prom/list/[:prom_id]',
+    [
+        'method' => 'generate',
+        'controller' => 'LearnerController'
+    ],
+    'prom-filter'
+);
+
+$router->map(
+    'POST',
+    '/prom/list/[:prom_id]/filtred',
+    [
+        'method' => 'groupList',
+        'controller' => 'LearnerController'
+    ],
+    'prom-filtered'
+);
+/*$router->map(
+    'GET',
+    '/prom/list/[:prom_id]?nbByGroup=[:length]?gender=[:isGender]?age=[:isAge]?skills=[:isSkills]',
+    [
+        'method' => 'groupList',
+        'controller' => 'LearnerController'
+    ],
+    'prom-grouping'
+);*/
+
+$router->map(
+    'GET',
+    '/skill/list',
+    [
+        'method' => 'listAction',
+        'controller' => 'PromController'
+    ],
+    'skill-list'
+);
+
 /* -------------
 --- DISPATCH ---
 --------------*/

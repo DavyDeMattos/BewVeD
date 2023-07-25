@@ -56,7 +56,7 @@ class Learner extends CoreModel
     }
 
     /**
-     * MEthod to get every datas from table learner 
+     * Method to get every datas from table learner 
      *
      * @return Learner[]
      */
@@ -74,6 +74,23 @@ class Learner extends CoreModel
         return $results;
     }
 
+    /**
+     * Method to get every learner from one prom 
+     *
+     * @return Learner[]
+     */
+    public static function getLeanerProm($prom_id)
+    {
+        $pdo = Database::getPDO();
+        // $sql = 'SELECT * FROM `learner`';
+        $sql = 
+        'SELECT * FROM `learner`
+         WHERE `prom_id` =' . $prom_id;
+        $pdoStatement = $pdo->query($sql);
+        $results = $pdoStatement->fetchAll(PDO::FETCH_CLASS, self::class);
+        
+        return $results;
+    }
     /**
      * Method to add learner's information to table 'learner'
      * Object has to contain every propriety except for those who has default value (ex: updated_at)
