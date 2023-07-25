@@ -7,6 +7,7 @@ use App\Models\Learner;
 use App\Models\LearnerSkill;
 use App\Models\Prom;
 use App\Models\Skill;
+use App\Utils\Database;
 
 class LearnerController extends CoreController
 {
@@ -235,7 +236,6 @@ class LearnerController extends CoreController
         $skills = $_POST["skills"];
 
         $newLearner = new Learner();
-
         // dump($skills);
         
         // We use datas from form to set learner's Firstname
@@ -246,17 +246,22 @@ class LearnerController extends CoreController
         $newLearner->setProm_id($prom_id);     
 
         // sauvegarde de l'apprenant dans la table learner
-        // $newLearner->save();
+        $newLearner->save();
+
+        // To get the last ID created in the database
+        $pdo = Database::getPDO();
+        $lastId = $pdo->lastInsertId();
+        // dump($id);
 
         $newLearnerSkill = new LearnerSkill();
-        dump($skills);
-        foreach ($skills as $key => $skill) {
+        // dump($skills);
+        foreach ($skills as $skill) {
             // dump("coucou");
-            dump($skill);
+            // dump($skill);
+            $newLearnerSkill->setLearner_id($lastId);
+            $newLearnerSkill->setSkill_id($skill);
+            $newLearnerSkill->insert();
         }
-
-
-        // TODO Continuer en faisant les jointures avec les entités skill et skill_group
 
         // Une fois la voiture insérée en BDD, on redirige vers la page liste des voitures
         $this->redirect('learner-list');
