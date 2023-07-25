@@ -2,15 +2,15 @@
     <h2>Nouvel apprenant</h2>
     <form class="row align-items-start" action="" method="POST">
         <div class="mb-3 col-md-6">
-            <label for="Lastname" class="form-label">Nom</label>
-            <input required class="form-control" id="Lastname" name="Lastname" placeholder="Indiquer le nom de l'apprenant">
+            <label for="lastname" class="form-label">Nom</label>
+            <input required class="form-control" id="lastname" name="lastname" placeholder="Indiquer le nom de l'apprenant">
         </div>
         <div class="mb-3 col-md-6">
-            <label for="Firstname" class="form-label">Prénom</label>
-            <input required class="form-control" id="Firstname" name="Firstname" placeholder="Indiquer le prénom de l'apprenant"></input>
+            <label for="firstname" class="form-label">Prénom</label>
+            <input required class="form-control" id="firstname" name="firstname" placeholder="Indiquer le prénom de l'apprenant"></input>
         </div>
         <div class="d-flex">
-          <select required id="prom" name="prom" aria-label="Default select example">
+          <select required id="prom" name="prom_id" aria-label="Default select example">
               <option selected value="" >Choisissez la promotion</option>
               <?php foreach ($promList as $currentProm) :?>
                 <option value="<?= $currentProm->getId(); ?>"><?= $currentProm->getLabel(); ?></option>
@@ -22,7 +22,8 @@
               <option value="f">Femme</option>
           </select>
           <label for="skills">Compétences de l'apprenant:</label>
-          <select required name="skills" id="skills" multiple>
+          <!-- name="skills[]" en mettant le [], transforme en tableau -->
+          <select required name="skills[]" id="skills" multiple size="3">
             <?php foreach ($skillList as $currentSkill) :?>
                 <option 
                     value="<?= $currentSkill->getId(); ?>" 

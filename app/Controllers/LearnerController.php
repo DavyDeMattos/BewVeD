@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use AltoRouter;
 use App\Models\Learner;
+use App\Models\LearnerSkill;
 use App\Models\Prom;
 use App\Models\Skill;
 
@@ -77,16 +78,6 @@ class LearnerController extends CoreController
         // dump($length, $gender, $age, $skills);
         // dump($length, $isMixite, $isAge, $isSkills);
         // dump($students);
-        /*foreach ($students as $student) {
-            // dump($student);
-            // dump($student->getGender());
-            $sexe = $student->getGender();
-            if ($sexe === "m") {
-                $maleStudents[]=$student; 
-            } elseif ($sexe === "f") {
-                $femaleStudents[]=$student; 
-            }
-        }*/
         if ($isMixite) {
             
                 $total = count($students);
@@ -237,11 +228,15 @@ class LearnerController extends CoreController
         $firstname = filter_input(INPUT_POST, 'firstname');
         // floatval = string to float
         // ! A changer ?
-        $age = floatval(filter_input(INPUT_POST, 'age'));
+        $age = intval(floatval(filter_input(INPUT_POST, 'age')));
         $gender = filter_input(INPUT_POST, 'gender');
-        $prom_id = floatval(filter_input(INPUT_POST, 'prom_id'));
+        $prom_id = intval(filter_input(INPUT_POST, 'prom_id'));
+        // $skills = filter_input(INPUT_POST, 'skills');
+        $skills = $_POST["skills"];
 
         $newLearner = new Learner();
+
+        // dump($skills);
         
         // We use datas from form to set learner's Firstname
         $newLearner->setLastname($lastname);
@@ -250,7 +245,16 @@ class LearnerController extends CoreController
         $newLearner->setGender($gender);
         $newLearner->setProm_id($prom_id);     
 
-        $newLearner->save();
+        // sauvegarde de l'apprenant dans la table learner
+        // $newLearner->save();
+
+        $newLearnerSkill = new LearnerSkill();
+        dump($skills);
+        foreach ($skills as $key => $skill) {
+            // dump("coucou");
+            dump($skill);
+        }
+
 
         // TODO Continuer en faisant les jointures avec les entités skill et skill_group
 
