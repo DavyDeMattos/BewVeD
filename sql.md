@@ -1,4 +1,4 @@
-# SQL
+.# SQL
 
 ## Toute les sélections de learner avec skills
 
@@ -24,6 +24,14 @@ JOIN `learner_skill`
 ON `learner`.`id` = `learner_id`
 JOIN `skill`
 ON `learner_skill`.`skill_id` = `skill`.`id`
+JOIN `skill_group`
+ON `skill`.`skill_group_id` = `skill_group`.`id`
+```
+
+## Sélections de skills + skill_group
+
+```sql
+SELECT `skill`.`id`, `skill`.`label`, `skill_group`.`code` FROM `skill`
 JOIN `skill_group`
 ON `skill`.`skill_group_id` = `skill_group`.`id`
 ```

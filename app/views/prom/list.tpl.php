@@ -26,11 +26,11 @@
         </th>
         <td>
           <a href="#">
-            <div class="delete"><i class="fa-sharp fa-solid fa-trash"></i></div
+            <div class="delete"><i class="fa-sharp fa-solid fa-trash">X</i></div
           ></a>
         </td>
         <td>
-          <div class="edit"><i class="fa-sharp fa-solid fa-pen"></i></div>
+          <div class="edit"><i class="fa-sharp fa-solid fa-pen">O</i></div>
         </td>
       </tr>
       <?php endforeach; ?>

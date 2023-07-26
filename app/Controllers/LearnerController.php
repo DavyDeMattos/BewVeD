@@ -4,8 +4,10 @@ namespace App\Controllers;
 
 use AltoRouter;
 use App\Models\Learner;
+use App\Models\LearnerSkill;
 use App\Models\Prom;
 use App\Models\Skill;
+use App\Utils\Database;
 
 class LearnerController extends CoreController
 {
@@ -77,16 +79,6 @@ class LearnerController extends CoreController
         // dump($length, $gender, $age, $skills);
         // dump($length, $isMixite, $isAge, $isSkills);
         // dump($students);
-        /*foreach ($students as $student) {
-            // dump($student);
-            // dump($student->getGender());
-            $sexe = $student->getGender();
-            if ($sexe === "m") {
-                $maleStudents[]=$student; 
-            } elseif ($sexe === "f") {
-                $femaleStudents[]=$student; 
-            }
-        }*/
         if ($isMixite) {
             
                 $total = count($students);
@@ -237,11 +229,14 @@ class LearnerController extends CoreController
         $firstname = filter_input(INPUT_POST, 'firstname');
         // floatval = string to float
         // ! A changer ?
-        $age = floatval(filter_input(INPUT_POST, 'age'));
+        $age = intval(floatval(filter_input(INPUT_POST, 'age')));
         $gender = filter_input(INPUT_POST, 'gender');
-        $prom_id = floatval(filter_input(INPUT_POST, 'prom_id'));
+        $prom_id = intval(filter_input(INPUT_POST, 'prom_id'));
+        // $skills = filter_input(INPUT_POST, 'skills');
+        $skills = $_POST["skills"];
 
         $newLearner = new Learner();
+        // dump($skills);
         
         // We use datas from form to set learner's Firstname
         $newLearner->setLastname($lastname);
@@ -250,11 +245,25 @@ class LearnerController extends CoreController
         $newLearner->setGender($gender);
         $newLearner->setProm_id($prom_id);     
 
+        // sauvegarde de l'apprenant dans la table learner
         $newLearner->save();
 
-        // TODO Continuer en faisant les jointures avec les entités skill et skill_group
+        // To get the last ID created in the database
+        $pdo = Database::getPDO();
+        $lastId = $pdo->lastInsertId();
+        // dump($id);
 
-        // Une fois la voiture insérée en BDD, on redirige vers la page liste des voitures
+        $newLearnerSkill = new LearnerSkill();
+        // dump($skills);
+        foreach ($skills as $skill) {
+            // dump("coucou");
+            // dump($skill);
+            $newLearnerSkill->setLearner_id($lastId);
+            $newLearnerSkill->setSkill_id($skill);
+            $newLearnerSkill->insert();
+        }
+
+        // Une fois l'apprenant insérée en BDD, on redirige vers la page liste des apprenants
         $this->redirect('learner-list');
 
     }
@@ -267,7 +276,7 @@ class LearnerController extends CoreController
      */
     public function updateAction($id) {
 
-        // On récupère les infos  de la voiture depuis $_POST
+        // On récupère les infos  de l'apprenant depuis $_POST
         $lastname = filter_input(INPUT_POST, 'lastname');
         $firstname = filter_input(INPUT_POST, 'firstname');
         $age = filter_input(INPUT_POST, 'age');
@@ -325,7 +334,7 @@ class LearnerController extends CoreController
 
         // TODO Continuer en faisant les jointures avec les entités skill et skill_group
 
-        // Une fois la voiture insérée en BDD, on redirige vers la page liste des voitures
+        // Une fois l'apprenant insérée en BDD, on redirige vers la page liste des apprenants
         $this->redirect('learner-list');
 
     }
