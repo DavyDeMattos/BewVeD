@@ -263,7 +263,7 @@ class LearnerController extends CoreController
             $newLearnerSkill->insert();
         }
 
-        // Une fois la voiture insérée en BDD, on redirige vers la page liste des voitures
+        // Une fois l'apprenant insérée en BDD, on redirige vers la page liste des apprenants
         $this->redirect('learner-list');
 
     }
@@ -276,7 +276,7 @@ class LearnerController extends CoreController
      */
     public function updateAction($id) {
 
-        // On récupère les infos  de la voiture depuis $_POST
+        // On récupère les infos  de l'apprenant depuis $_POST
         $lastname = filter_input(INPUT_POST, 'lastname');
         $firstname = filter_input(INPUT_POST, 'firstname');
         $age = filter_input(INPUT_POST, 'age');
@@ -334,7 +334,7 @@ class LearnerController extends CoreController
 
         // TODO Continuer en faisant les jointures avec les entités skill et skill_group
 
-        // Une fois la voiture insérée en BDD, on redirige vers la page liste des voitures
+        // Une fois l'apprenant insérée en BDD, on redirige vers la page liste des apprenants
         $this->redirect('learner-list');
 
     }

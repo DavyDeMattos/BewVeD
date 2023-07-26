@@ -125,6 +125,35 @@ $router->map(
     'skill-list'
 );
 
+$router->map(
+    'GET',
+    '/skill/add',
+    [
+        'method' => 'formAdd',
+        'controller' => 'SkillController'
+    ],
+    'skill-add'
+);
+
+$router->map(
+    'POST',
+    '/skill/add',
+    [
+        'method' => 'createAction',
+        'controller' => 'SkillController'
+    ],
+    'skill-create'
+);
+
+$router->map(
+    'GET',
+    '/skill/list/delete/[:skill_id]',
+    [
+        'method' => 'deleteAction',
+        'controller' => 'SkillController'
+    ],
+    'skill-delete'
+);
 /*$router->map(
     'GET',
     '/former/list',

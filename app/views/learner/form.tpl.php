@@ -32,6 +32,6 @@
             <?php endforeach; ?>
           </select>
         </div>
-        <button type="submit" class="btn btn-secondary add-car">Soumettre</button>
+        <button type="submit" class="btn btn-secondary ">Soumettre</button>
     </form>
 </div>

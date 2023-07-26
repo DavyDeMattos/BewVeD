@@ -25,7 +25,7 @@ class LearnerSkill
     //==============================
 
     /**
-     * Method to get datas from BDD with an id
+     * Method to get datas from BDD with an learner_id
      *
      * @param int $learner_skillId Learner_skill's id
      * @return LearnerSkill
@@ -34,7 +34,7 @@ class LearnerSkill
     {
         // connection to BDD
         $pdo = Database::getPDO();
-        $sql = 'SELECT * FROM `learner_skill` WHERE `id` =' . $learner_skillId;
+        $sql = 'SELECT * FROM `learner_skill` WHERE `learner_id` =' . $learner_skillId;
         $pdoStatement = $pdo->query($sql);
 
         // self::class permet d'afficher le FQCN (nom complet) de la classe dans laquelle on se situe
@@ -43,6 +43,27 @@ class LearnerSkill
         return $learner_skill;
     }
 
+    /**
+     * Method to get datas from BDD with an learner_id
+     *
+     * @param int $skillId Learner skill's id
+     * @return LearnerSkill
+     */
+    public static function findLeanerFromSkill($skillId)
+    {
+        // connection to BDD
+        $pdo = Database::getPDO();
+        $sql = 'SELECT * FROM `learner_skill` WHERE `skill_id` =' . $skillId;
+        $pdoStatement = $pdo->query($sql);
+
+        // self::class permet d'afficher le FQCN (nom complet) de la classe dans laquelle on se situe
+        $learner_skills = $pdoStatement->fetchObject(self::class);
+        dump($learner_skills);
+        $learner_skill = $pdoStatement->fetchAll(PDO::FETCH_CLASS, self::class);
+        dump($learner_skill);
+
+        return $learner_skill;
+    }
     /**
      * MEthod to get every datas from table learner_skill 
      *
@@ -130,6 +151,25 @@ class LearnerSkill
         $pdoStatement = $pdo->prepare($sql);
 
         $pdoStatement->bindValue(':learner_id', $this->learner_id, PDO::PARAM_INT);
+
+        return $pdoStatement->execute();
+        
+    }
+    /**
+     * Method to delete learner_skill on BDD
+     *
+     * @return void
+     */
+    public function deleteFromSkill($skill_id)
+    {
+        $pdo = Database::getPDO();
+
+        $sql = "DELETE FROM `learner_skill`
+        WHERE `skill_id` = " . $skill_id;
+
+        $pdoStatement = $pdo->prepare($sql);
+
+        $pdoStatement->bindValue(':skill_id', $this->skill_id, PDO::PARAM_INT);
 
         return $pdoStatement->execute();
         

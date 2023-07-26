@@ -2,8 +2,9 @@
 
 namespace App\Controllers;
 
+use App\Models\LearnerSkill;
 use App\Models\Skill;
-
+use App\Models\SkillGroup;
 
 class SkillController extends CoreController
 {
@@ -36,6 +37,24 @@ class SkillController extends CoreController
         ]);
     }
     /**
+     * Function to get all skills
+     *
+     * @return void
+     */
+    public function formAdd()
+    {
+        $skillList = Skill::findAll();
+        $skillGroupList = SkillGroup::findAll();
+        //dump($skillList);
+
+        // En argument, on fournit le fichier de Vue
+        // Par convention, chaque fichier de vue sera dans un sous-dossier du nom du Controller
+        $this->show('skill/add', [
+            'skillList' => $skillList,
+            'skillGroupList' => $skillGroupList,
+        ]);
+    }
+    /**
      * Function called by form to add a skill
      */
     public function createAction()
@@ -43,11 +62,13 @@ class SkillController extends CoreController
         // dump($_POST);
         // exit;
         $label = filter_input(INPUT_POST, 'label');
+        $skillGroupId = filter_input(INPUT_POST, 'skillGroup');
 
         $newSkill = new Skill();
         
         // We use datas from form to set skill's Firstname
         $newSkill->setLabel($label);
+        $newSkill->setSkill_group_id($skillGroupId);
 
         $newSkill->save();
 
@@ -90,15 +111,16 @@ class SkillController extends CoreController
      */
     public function deleteAction($id)
     {
-        // dump($_POST);
-        // exit;
         $skillToDelete = Skill::find($id); 
-
         $skillToDelete->delete();
+        // Suppression en cascade si un skill est supprimé
+        $skillLearnerToDelete = LearnerSkill::findLeanerFromSkill($id);
+        // dump($skillToDelete);
+        // dump($skillLearnerToDelete);
+        $skillLearnerToDelete->deleteFromSkill($id);
 
-        // TODO Continuer en faisant les jointures avec les entités learner
 
-        // Une fois la voiture insérée en BDD, on redirige vers la page liste des voitures
+        // Une fois la compétence supprimée en BDD, on redirige vers la page liste des compétences
         $this->redirect('skill-list');
 
     }

@@ -1,7 +1,7 @@
 <main>
   <h2>Liste des Compétences</h2>
   <div class="content">
-    <a href="#"
+    <a href="<?= $router->generate('skill-add') ?>"
       ><div class="buttonadd">
         Ajouter une compétence<i class="fa-sharp fa-solid fa-plus"></i></div
     ></a>
@@ -20,18 +20,18 @@
       <?php foreach ($skillList as $currentSkill) : ?>
       <tr>
         <td colspan="1">
-          <a href="#">
+          <!-- <a href="#"> -->
           <?= $currentSkill->getId(); ?>
-          </a>
+          <!-- </a> -->
         </td>
         <th colspan="1">
-          <a href="#">
+          <!-- <a href="#"> -->
           <?= $currentSkill->getLabel(); ?>
-          </a>
+          <!-- </a> -->
         </th>
         <th colspan="1"><?= $currentSkill->code; ?></th>
         <td>
-          <a href="#">
+          <a href="<?= $router->generate('skill-delete') . $currentSkill->getId(); ?>">
             <div class="delete"><i class="fa-sharp fa-solid fa-trash">X</i></div
           ></a>
         </td>

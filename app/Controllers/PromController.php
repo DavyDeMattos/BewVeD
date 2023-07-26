@@ -87,7 +87,7 @@ class PromController extends CoreController
 
         // TODO Continuer en faisant les jointures avec les entités learner
 
-        // Une fois la voiture insérée en BDD, on redirige vers la page liste des voitures
+        // Une fois la promotion insérée en BDD, on redirige vers la page liste des promotions
         $this->redirect('prom-list');
 
     }
