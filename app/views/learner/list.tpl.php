@@ -20,7 +20,7 @@
       <?php foreach ($learnerList as $currentLearner) : ?>
       <tr>
         <td colspan="1">
-          <a href="<?= $router->generate('prom-list') ?>">
+          <a href="<?= $router->generate('prom-list') . "/" . $currentLearner->getProm_id(); ?>">
           <?= $currentLearner->label; ?>
           </a>
         </td>

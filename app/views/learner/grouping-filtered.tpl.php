@@ -1,9 +1,9 @@
 <main>
   <h2>Mes Groupes Filtré</h2>
   <h2><?= $prom->GetLabel(); ?></h2>
-  <span><?= count($learnerList) ?> Apprenants</span>
+  <h3 class="content"><?= count($learnerList) ?> Apprenants</h3>
 
-  <nav class="filter">
+  <nav class="filter content">
     <form action="" method="post">
       <label for="name">Nombre d'étudiant par groupe</label>
       <input type="number" name="nbByGroup" id="nbByGroupField" value="1">
