@@ -42,8 +42,12 @@ a:visited, a:hover, a:active {
 .content {
   margin: 0 10%;
 }
-h1, h2{
+h1, h2, h3{
   text-align: center;
+}
+
+.filter.content{
+  margin-top: 1rem;
 }
 
 body main div.content {

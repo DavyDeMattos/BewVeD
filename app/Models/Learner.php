@@ -65,7 +65,7 @@ class Learner extends CoreModel
         $pdo = Database::getPDO();
         // $sql = 'SELECT * FROM `learner`';
         $sql = 
-        'SELECT `learner`.`id`, `learner`.`lastname`, `learner`.`firstname`, `learner`.`age`, `learner`.`gender`, `prom`.`label` FROM `learner`
+        'SELECT `learner`.`id`, `learner`.`lastname`, `learner`.`firstname`, `learner`.`age`, `learner`.`gender`,`learner`.`prom_id`, `prom`.`label` FROM `learner`
         JOIN `prom`
         ON `prom_id` = `prom`.`id`';
         $pdoStatement = $pdo->query($sql);
