@@ -1,9 +1,9 @@
 <main>
-  <h2>Liste des promotions</h2>
+  <h2>Liste des Compétences</h2>
   <div class="content">
     <a href="#"
       ><div class="buttonadd">
-        Ajouter une promotion<i class="fa-sharp fa-solid fa-plus"></i></div
+        Ajouter une compétence<i class="fa-sharp fa-solid fa-plus"></i></div
     ></a>
   </div>
 
@@ -12,18 +12,24 @@
     <table>
       <tr>
         <th colspan="1">ID</th>
-        <th colspan="1">Promotion</th>
+        <th colspan="1">Label</th>
+        <th colspan="1">Groupe</th>
         <th colspan="2">Action</th>
       </tr>
-      <!-- Ici début boucle pour afficher liste des apprenants -->
-      <?php foreach ($promList as $currentProm) : ?>
+      <!-- Ici début boucle pour afficher liste des compétences -->
+      <?php foreach ($skillList as $currentSkill) : ?>
       <tr>
-        <th colspan="1"><?= $currentProm->getId(); ?></th>
+        <td colspan="1">
+          <a href="#">
+          <?= $currentSkill->getId(); ?>
+          </a>
+        </td>
         <th colspan="1">
-          <a href="<?= $router->generate('prom-list') ."/". $currentProm->getId();?>">
-          <?= $currentProm->getLabel(); ?>
+          <a href="#">
+          <?= $currentSkill->getLabel(); ?>
           </a>
         </th>
+        <th colspan="1"><?= $currentSkill->code; ?></th>
         <td>
           <a href="#">
             <div class="delete"><i class="fa-sharp fa-solid fa-trash">X</i></div
@@ -33,7 +39,7 @@
           <div class="edit"><i class="fa-sharp fa-solid fa-pen">O</i></div>
         </td>
       </tr>
-      <?php endforeach; ?>
+      <?php endforeach; ?> 
     </table>
   </div>
 </main>

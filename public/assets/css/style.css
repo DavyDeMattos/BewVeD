@@ -1,0 +1,135 @@
+html,
+body,
+footer {
+    background: whitesmoke;
+    font-size: larger;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    width: 100vw;
+}
+body footer {
+  padding-top: 2rem;
+  height: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: goldenrod;
+  font-size: 1rem;
+}
+
+nav.menu {
+  background-color: mediumslateblue;
+  border-radius: 10px 100px / 120px;
+  color: white;
+  padding: 2rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: larger;
+  cursor: default;
+}
+nav.menu a:link{
+  text-decoration: none;
+}
+
+a:visited, a:hover, a:active {
+  color: inherit;
+}
+
+.content {
+  margin: 0 10%;
+}
+h1, h2{
+  text-align: center;
+}
+
+body main div.content {
+  width: 80%;
+  margin-top: 1rem;
+
+  color: black;
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+body table {
+  border: 1px solid black;
+  border-radius: 10px;
+  width: 100%;
+  padding: 0.1rem 0.5rem 0.1rem 0.5rem;
+  background-color: white;
+}
+
+td th{
+  border: 1px solid black;
+  width: 1rem;
+  padding: 0.1rem 0rem 0.1rem 0rem;
+  text-align: center;
+}
+
+main div.delete {
+  background-color: red;
+  text-align: center;
+  cursor: pointer;
+  padding: 0.1rem 1rem 0.1rem 1rem;
+  border-radius: 5px;
+  margin-bottom: 0.5rem;
+}
+
+main div.edit {
+  background-color: green;
+  text-align: center;
+  cursor: pointer;
+  padding: 0.1rem 1rem 0.1rem 1rem;
+  border-radius: 5px;
+  margin-bottom: 0.5rem;
+}
+
+main div.buttonadd {
+  background-color: goldenrod;
+  text-align: center;
+  cursor: pointer;
+  padding: 1rem 1rem 1rem 1rem;
+  width: 80%;
+  display: flex;
+  font-weight: bolder;
+  justify-content: space-around;
+  border-radius: 5px;
+
+}
+
+form{
+  display: flex;
+  flex-wrap: wrap;
+}
+div.form-firstname, div.form-lastname{
+  width: 45%;
+  margin: 1rem;
+  text-align: center;
+}
+div.form-firstname input, div.form-lastname input{
+  padding: 0.5rem;
+}
+
+div.form-select{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  width: -webkit-fill-available;
+}
+
+div.form-select select{
+  padding: 1rem;
+}
+
+form.form-newlearner button{
+  width: -webkit-fill-available;
+  padding: 1rem;
+  text-align: center;
+}

@@ -27,3 +27,11 @@ ON `learner_skill`.`skill_id` = `skill`.`id`
 JOIN `skill_group`
 ON `skill`.`skill_group_id` = `skill_group`.`id`
 ```
+
+## Sélections de skills + skill_group
+
+```sql
+SELECT `skill`.`id`, `skill`.`label`, `skill_group`.`code` FROM `skill`
+JOIN `skill_group`
+ON `skill`.`skill_group_id` = `skill_group`.`id`
+```

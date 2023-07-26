@@ -119,11 +119,21 @@ $router->map(
     'GET',
     '/skill/list',
     [
-        'method' => 'listAction',
-        'controller' => 'PromController'
+        'method' => 'listActionWithGroup',
+        'controller' => 'SkillController'
     ],
     'skill-list'
 );
+
+/*$router->map(
+    'GET',
+    '/former/list',
+    [
+        'method' => 'listAction',
+        'controller' => 'LearnerController'
+    ],
+    'former-list'
+);*/
 
 /* -------------
 --- DISPATCH ---

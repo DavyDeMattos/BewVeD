@@ -1,15 +1,15 @@
-<div class="container">
+<div class="content">
     <h2>Nouvel apprenant</h2>
-    <form class="row align-items-start" action="" method="POST">
-        <div class="mb-3 col-md-6">
+    <form class="form-newlearner" action="" method="POST">
+        <div class="form-lastname">
             <label for="lastname" class="form-label">Nom</label>
             <input required class="form-control" id="lastname" name="lastname" placeholder="Indiquer le nom de l'apprenant">
         </div>
-        <div class="mb-3 col-md-6">
+        <div class="form-firstname">
             <label for="firstname" class="form-label">Prénom</label>
             <input required class="form-control" id="firstname" name="firstname" placeholder="Indiquer le prénom de l'apprenant"></input>
         </div>
-        <div class="d-flex">
+        <div class="form-select">
           <select required id="prom" name="prom_id" aria-label="Default select example">
               <option selected value="" >Choisissez la promotion</option>
               <?php foreach ($promList as $currentProm) :?>

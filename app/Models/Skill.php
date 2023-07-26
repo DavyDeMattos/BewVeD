@@ -57,6 +57,22 @@ class Skill extends CoreModel
         
         return $results;
     }
+        /**
+     * Method to get every datas from table skill link with skill_group
+     *
+     * @return Skill[]
+     */
+    public static function findAllAssociations()
+    {
+        $pdo = Database::getPDO();
+        $sql = 'SELECT `skill`.`id`, `skill`.`label`, `skill_group`.`code` FROM `skill`
+        JOIN `skill_group`
+        ON `skill`.`skill_group_id` = `skill_group`.`id`';
+        $pdoStatement = $pdo->query($sql);
+        $results = $pdoStatement->fetchAll(PDO::FETCH_CLASS, self::class);
+        
+        return $results;
+    }
 
     /**
      * Method to add skill's information to table 'skill'
